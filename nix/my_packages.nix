@@ -7,12 +7,12 @@
   #  wget
   	#for code and work
 	vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-   	appimage-run
+  appimage-run
 	python313
 	wget
 	wavm
 	curl
-    	alacritty
+  alacritty
 	neovim
 	git
 	cargo
@@ -23,14 +23,18 @@
 	libgccjit
 	gccgo14
 	rustc
-	#for privacy
+  nodejs_23
+	docker
+	virtualbox
+  #for privacy
 	localsend
 	sparrow
 	bitcoin	
 	mullvad-vpn
 	gnupg
 	#for fun
-	alacritty-theme
+  lsd
+  alacritty-theme
 	neofetch
 	nerdfonts
 	discord
