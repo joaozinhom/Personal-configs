@@ -27,11 +27,11 @@
   environment.systemPackages = with pkgs; [
     #!!!text editors/dev tools
     neovim
-	vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-	minikube
+    vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    minikube
     openssl
     libxml2
-	libxslt
+    libxslt
     git
     wget
     vscode
@@ -57,19 +57,19 @@
     docker
     wavm
     ollama
-	ollama-rocm
+    ollama-rocm
     unzip
     dig
     #for privacy
-	localsend
-	sparrow
-	bitcoin
-	mullvad-vpn
-	gnupg
+    localsend
+    sparrow
+    bitcoin
+    mullvad-vpn
+    gnupg
     #!!!entertainment and social life
     steam-run
-	steam
-	heroic
+    steam
+    heroic
     discord
     spotify
     neofetch
