@@ -1,4 +1,7 @@
-  #copy from here
+
+#if you want balena etcher try the following command
+#NIXPKGS_ALLOW_INSECURE=1 nix run github:nixos/nixpkgs/nixos-20.09#etcher --impure
+#copy from here
   #virtual box settings
    virtualisation.virtualbox.host.enable = true;
    users.extraGroups.docker.members = [ "username-with-access-to-socket" ];
