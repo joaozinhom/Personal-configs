@@ -1,5 +1,4 @@
   programs.steam.enable = true;
-
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
@@ -7,7 +6,7 @@
   #  wget
   	#for code and work
 	vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-   	appimage-run
+  appimage-run
 	python313
 	wget
 	curl

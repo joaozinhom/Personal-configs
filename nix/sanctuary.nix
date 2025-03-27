@@ -1,19 +1,21 @@
+{ config, pkgs, ... }:
 
-#if you want balena etcher try the following command
-#NIXPKGS_ALLOW_INSECURE=1 nix run github:nixos/nixpkgs/nixos-20.09#etcher --impure
-#copy from here
+{
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  imports =
+    [ # Include the results of the hardware scan.
+      ./hardware-configuration.nix
+    ];
+
   #virtual box settings
    virtualisation.virtualbox.host.enable = true;
    users.extraGroups.docker.members = [ "username-with-access-to-socket" ];
    virtualisation.virtualbox.host.enableExtensionPack = true;
    virtualisation.docker.rootless = {
-  	enable = true;
-  	setSocketVariable = true;};
-
-  boot.loader.grub.enable = true;
-  boot.loader.grub.device = "nodev";
-  boot.loader.grub.useOSProber = true;
-
+   enable = true;
+   setSocketVariable = true;};
+  #tailscale	
+  services.tailscale.enable = true;
   virtualisation.docker.enable = true;
   #niri
   programs.niri.enable = true;
@@ -27,11 +29,13 @@
   services.touchegg.enable = true;
   # List packages installed in system profile. To search, run:
   # $ nix search wget
+  services.udev.packages = [pkgs.vial pkgs.via];
+
   environment.systemPackages = with pkgs; [
-  #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-  #  wget
   	#for code and work
 	vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+	vial
+	pyenv
 	gparted
 	minikube
 	okular
@@ -64,15 +68,19 @@
 	ollama
 	ollama-rocm
 	uv
+	tailscale
 	#for privacy
 	localsend
 	sparrow
-	bitcoin
+	bitcoin	
 	mullvad-vpn
 	gnupg
 	dig
+	moonlight-qt	
 	#for fun
+	ocs-url
 	lsd
+	alacritty-theme
 	neofetch
 	nerdfonts
 	discord
@@ -82,3 +90,10 @@
 	steam
 	heroic
   ];
+}
+
+	
+
+	
+	
+
