@@ -19,7 +19,7 @@
     }
   ],
   "tabAutocompleteModel": {
-    "title": "Deep-seeker",
+    "title": "Deep-seek",
     "provider": "ollama",
     "model": "deepseek-coder:1.3b-base"
   },

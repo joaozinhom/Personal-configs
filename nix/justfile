@@ -6,11 +6,6 @@ set-sanctuary:
     @just _set-sysconf
     sudo nixos-rebuild switch --flake /etc/nixos/#sanctuary
 
-# Set the last `minimalist` generation to active.
-set-minimalist:
-    @just _set-sysconf
-    sudo nixos-rebuild switch --flake /etc/nixos/#minimalist
-
 # Set the last home-manager generation to active.
 set-hman:
     @just _set-homeconf
