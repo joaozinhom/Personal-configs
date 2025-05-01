@@ -2,11 +2,6 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-
-
-
-
-
 { config, pkgs, ... }:
 
 {
@@ -48,11 +43,15 @@
     LC_TIME = "pt_BR.UTF-8";
   };
 
+    
+    services.xserver = {
+    #enable = true;
+    displayManager.gdm.enable = true;
+    displayManager.gdm.wayland = true;
+    desktopManager.gnome.enable = true; 
+ };
 
-  services.xserver.enable = true;
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
-   
+
   # Configure keymap in X11
   services.xserver.xkb = {
     layout = "us";
@@ -79,7 +78,7 @@
   };
 
   # Enable touchpad support (enabled default in most desktopManager).
-  # services.xserver.libinput.enable = true;
+   #services.libinput.enable;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.joaozinho = {
@@ -97,7 +96,7 @@
   #copy from here 
   #virtual box settings
    virtualisation.virtualbox.host.enable = true;
-   users.extraGroups.docker.members = [ "username-with-access-to-socket" ];
+   users.extraGroups.docker.members = [ "joaozinho" ];
    virtualisation.virtualbox.host.enableExtensionPack = true;
    virtualisation.docker.rootless = {
   	enable = true;
@@ -114,11 +113,10 @@
   programs.steam.enable = true;
   services.libinput.enable = true;
   # multi-touch gesture recognizer
-  services.touchegg.enable = true;
+ #programs.nix-ld.enable = true;
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   services.udev.packages = [pkgs.vial pkgs.via];
-
   environment.systemPackages = with pkgs; [
   #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
   #  wget
@@ -179,7 +177,18 @@
 	steam-run
 	steam
 	heroic
-  ];
+	#for niri
+	waybar
+	fuzzel
+	swaylock
+	mako
+	xdg-desktop-portal-gtk
+	swaybg
+	xwayland-satellite
+	swayidle
+	xdg-desktop-portal-gtk
+];
+ 
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
