@@ -108,6 +108,8 @@
   programs.niri.enable = true;
   # mullvad
   services.mullvad-vpn.enable = true;
+  services.mullvad-vpn.package = pkgs.mullvad-vpn;
+  services.resolved.enable = true;
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
   programs.steam.enable = true;
@@ -153,8 +155,6 @@
 	docker
 	wavm
 	unzip
-	ollama
-	ollama-rocm
 	uv
 	tailscale
 	#for privacy
@@ -168,7 +168,6 @@
 	#for fun
 	ocs-url
 	lsd
-	alacritty-theme
 	neofetch
 	nerdfonts
 	discord
