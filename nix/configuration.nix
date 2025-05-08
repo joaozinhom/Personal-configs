@@ -101,6 +101,7 @@
    virtualisation.docker.rootless = {
   	enable = true;
   	setSocketVariable = true;};
+ 
   #tailscale	
   services.tailscale.enable = true;
   virtualisation.docker.enable = true;
@@ -178,8 +179,11 @@
 	heroic
 	#for niri
 	waybar
+	swww
+	nwg-bar
 	fuzzel
-	swaylock
+	#swaylock
+	swaylock-effects
 	mako
 	xdg-desktop-portal-gtk
 	swaybg
