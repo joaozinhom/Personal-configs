@@ -1,1 +1,1 @@
-Paste in /etc/nixos/configuration.nix run this with the command: sudo nixos-rebuild switch
+sudo nixos-rebuild switch --flake /etc/nixos#joaozinho --impure
