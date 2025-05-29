@@ -36,13 +36,13 @@
     gnome-chess
     yelp # GNOME Help
     gnome-logs
-    baobab # GNOME Disk Usage Analyzer
+    #baobab # GNOME Disk Usage Analyzer
     gnome-font-viewer
     gnome-screenshot
-    simple-scan
-    gnome-system-monitor
+    #simple-scan
+    #gnome-system-monitor
     seahorse # GNOME Passwords and Keys
-    gnome-disk-utility
+    #gnome-disk-utility
   ];
   # Install required packages for extensions and GNOME functionality
   environment.systemPackages = with pkgs; [
@@ -62,6 +62,7 @@
     gnomeExtensions.dash-to-dock
     #gnomeExtensions.gamemode # Note: GameBar might need this
     gnomeExtensions.removable-drive-menu
+    gnomeExtensions.tiling-assistant
     gnomeExtensions.vitals
     # Additional useful tools
     gnome-tweaks # For managing extensions
