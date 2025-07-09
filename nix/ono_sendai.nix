@@ -3,8 +3,10 @@
   #copy from here 
   #virtual box settings
    virtualisation.virtualbox.host.enable = true;
-   users.extraGroups.docker.members = [ "username-with-access-to-socket" ];
+   users.extraGroups.docker.members = [ "joaozinho" ];
    virtualisation.virtualbox.host.enableExtensionPack = true;
+   virtualisation.virtualbox.host.enableKvm = true;
+   virtualisation.virtualbox.host.addNetworkInterface = false;
    virtualisation.docker.rootless = {
   	enable = true;
   	setSocketVariable = true;};
@@ -12,10 +14,6 @@
   #tailscale	
   services.tailscale.enable = true;
   virtualisation.docker.enable = true;
-  # mullvad
-  services.mullvad-vpn.enable = true;
-  services.mullvad-vpn.package = pkgs.mullvad-vpn;
-  services.resolved.enable = true;
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
   programs.steam.enable = true;
@@ -23,7 +21,10 @@
   # multi-touch gesture recognizer
   services.touchegg.enable = true;
   # List packages installed in system profile. To search, run:
+services.hardware.openrgb.enable = true;
+networking.firewall.checkReversePath = false;
   # $ nix search wget
+
   #ollama
   services.ollama= {
   enable = true;
@@ -38,6 +39,7 @@
   #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
   #  wget
   	#for code and work
+	openrgb
 	vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
 	vial
 	libgtop
@@ -77,7 +79,7 @@
 	localsend
 	sparrow
 	bitcoin	
-	mullvad-vpn
+	protonvpn-gui
 	gnupg
 	dig
 	moonlight-qt	
@@ -93,7 +95,6 @@
 	vlc
 	steam-run
 	steam
-	heroic
   	ryujinx
 	rpcs3
 	#AI packages
