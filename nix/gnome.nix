@@ -64,6 +64,8 @@
     gnomeExtensions.removable-drive-menu
     gnomeExtensions.tiling-assistant
     gnomeExtensions.vitals
+    gnomeExtensions.status-icons
+    
     # Additional useful tools
     gnome-tweaks # For managing extensions
     dconf-editor # For advanced GNOME settings

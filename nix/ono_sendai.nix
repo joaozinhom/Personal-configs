@@ -1,6 +1,5 @@
 { config, pkgs, lib, ... }:
 {
-  #copy from here 
   #virtual box settings
    virtualisation.virtualbox.host.enable = true;
    users.extraGroups.docker.members = [ "joaozinho" ];
@@ -31,15 +30,12 @@ networking.firewall.checkReversePath = false;
   # Optional: preload models, see https://ollama.com/library
   loadModels = [ "devstral" "qwen3"];
 };
-
-
   services.udev.packages = [pkgs.vial pkgs.via];
 
   environment.systemPackages = with pkgs; [
   #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
   #  wget
   	#for code and work
-	openrgb
 	vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
 	vial
 	libgtop
@@ -56,7 +52,7 @@ networking.firewall.checkReversePath = false;
 	wget
 	wavm
 	curl
-    	alacritty
+  alacritty
 	neovim
 	git
 	cargo
@@ -89,14 +85,13 @@ networking.firewall.checkReversePath = false;
 	alacritty-theme
 	neofetch
 	nerd-fonts._0xproto
-        nerd-fonts.droid-sans-mono
+  nerd-fonts.droid-sans-mono
 	#nerd-fonts
 	discord
 	vlc
 	steam-run
 	steam
-  	ryujinx
-	rpcs3
+  ryujinx
 	#AI packages
 	ollama
 	lmstudio
