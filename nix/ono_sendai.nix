@@ -20,7 +20,6 @@
   # multi-touch gesture recognizer
   services.touchegg.enable = true;
   # List packages installed in system profile. To search, run:
-services.hardware.openrgb.enable = true;
 networking.firewall.checkReversePath = false;
   # $ nix search wget
 
