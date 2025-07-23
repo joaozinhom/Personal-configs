@@ -1,5 +1,6 @@
 { config, pkgs, lib, ... }:
 {
+  #copy from here 
   #virtual box settings
    virtualisation.virtualbox.host.enable = true;
    users.extraGroups.docker.members = [ "joaozinho" ];
@@ -9,7 +10,9 @@
    virtualisation.docker.rootless = {
   	enable = true;
   	setSocketVariable = true;};
-
+environment.variables = {
+GI_TYPELIB_PATH = "/run/current-system/sw/lib/girepository-1.0";
+};
   #tailscale	
   services.tailscale.enable = true;
   virtualisation.docker.enable = true;
@@ -19,9 +22,9 @@
   services.libinput.enable = true;
   # multi-touch gesture recognizer
   services.touchegg.enable = true;
-  # List packages installed in system profile. To search, run:
-networking.firewall.checkReversePath = false;
-  # $ nix search wget
+		# List packages installed in system profile. To search, run:
+	networking.firewall.checkReversePath = false;
+		# $ nix search wget
 
   #ollama
   services.ollama= {
@@ -29,12 +32,11 @@ networking.firewall.checkReversePath = false;
   # Optional: preload models, see https://ollama.com/library
   loadModels = [ "devstral" "qwen3"];
 };
+
+
   services.udev.packages = [pkgs.vial pkgs.via];
 
   environment.systemPackages = with pkgs; [
-  #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-  #  wget
-  	#for code and work
 	vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
 	vial
 	libgtop
@@ -68,7 +70,7 @@ networking.firewall.checkReversePath = false;
 	unzip
 	uv
 	tailscale
-	gtop
+	libgtop
 	obs-studio
 	#for privacy
 	localsend
@@ -84,13 +86,13 @@ networking.firewall.checkReversePath = false;
 	alacritty-theme
 	neofetch
 	nerd-fonts._0xproto
-  nerd-fonts.droid-sans-mono
+        nerd-fonts.droid-sans-mono
 	#nerd-fonts
 	discord
 	vlc
 	steam-run
 	steam
-  ryujinx
+  	ryujinx
 	#AI packages
 	ollama
 	lmstudio
