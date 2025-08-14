@@ -22,25 +22,18 @@ GI_TYPELIB_PATH = "/run/current-system/sw/lib/girepository-1.0";
   services.libinput.enable = true;
   # multi-touch gesture recognizer
   services.touchegg.enable = true;
-		# List packages installed in system profile. To search, run:
-	networking.firewall.checkReversePath = false;
-		# $ nix search wget
-
-  #ollama
-  services.ollama= {
-  enable = true;
-  # Optional: preload models, see https://ollama.com/library
-  loadModels = [ "devstral" "qwen3"];
-};
-
-
+  # List packages installed in system profile. To search, run:
+  networking.firewall.checkReversePath = false;
+  # $ nix search wget
   services.udev.packages = [pkgs.vial pkgs.via];
 
   environment.systemPackages = with pkgs; [
+  #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+  #  wget
+  	#for code and work	
 	vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
 	vial
 	libgtop
-	pyenv
 	gparted
 	minikube
 	pkg-config
@@ -53,7 +46,7 @@ GI_TYPELIB_PATH = "/run/current-system/sw/lib/girepository-1.0";
 	wget
 	wavm
 	curl
-  alacritty
+    alacritty
 	neovim
 	git
 	cargo
@@ -70,7 +63,6 @@ GI_TYPELIB_PATH = "/run/current-system/sw/lib/girepository-1.0";
 	unzip
 	uv
 	tailscale
-	libgtop
 	obs-studio
 	#for privacy
 	localsend
@@ -82,11 +74,8 @@ GI_TYPELIB_PATH = "/run/current-system/sw/lib/girepository-1.0";
 	moonlight-qt	
 	#for fun
 	ocs-url
-	lsd
 	alacritty-theme
 	neofetch
-	nerd-fonts._0xproto
-        nerd-fonts.droid-sans-mono
 	#nerd-fonts
 	discord
 	vlc
@@ -94,7 +83,6 @@ GI_TYPELIB_PATH = "/run/current-system/sw/lib/girepository-1.0";
 	steam
   	ryujinx
 	#AI packages
-	ollama
 	lmstudio
   ];
 }
