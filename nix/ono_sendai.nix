@@ -13,6 +13,7 @@
 environment.variables = {
 GI_TYPELIB_PATH = "/run/current-system/sw/lib/girepository-1.0";
 };
+  users.users.joaozinho.extraGroups = [ "dialout" ];
   #tailscale	
   services.tailscale.enable = true;
   virtualisation.docker.enable = true;
@@ -22,6 +23,8 @@ GI_TYPELIB_PATH = "/run/current-system/sw/lib/girepository-1.0";
   services.libinput.enable = true;
   # multi-touch gesture recognizer
   services.touchegg.enable = true;
+  #flatpak enable
+  services.flatpak.enable = true;
   # List packages installed in system profile. To search, run:
   networking.firewall.checkReversePath = false;
   # $ nix search wget
@@ -30,6 +33,9 @@ GI_TYPELIB_PATH = "/run/current-system/sw/lib/girepository-1.0";
   environment.systemPackages = with pkgs; [
   #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
   #  wget
+  #flatpak
+  	flatpak
+      	gnome-software
   	#for code and work	
 	vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
 	vial
@@ -41,12 +47,10 @@ GI_TYPELIB_PATH = "/run/current-system/sw/lib/girepository-1.0";
 	libxml2
 	libxslt
 	appimage-run
-	poetry
-	python313
 	wget
 	wavm
 	curl
-    alacritty
+    	alacritty
 	neovim
 	git
 	cargo
@@ -61,7 +65,6 @@ GI_TYPELIB_PATH = "/run/current-system/sw/lib/girepository-1.0";
 	docker
 	wavm
 	unzip
-	uv
 	tailscale
 	obs-studio
 	#for privacy
@@ -77,7 +80,6 @@ GI_TYPELIB_PATH = "/run/current-system/sw/lib/girepository-1.0";
 	alacritty-theme
 	neofetch
 	#nerd-fonts
-	discord
 	vlc
 	steam-run
 	steam
