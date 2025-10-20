@@ -1,6 +1,6 @@
 { config, pkgs, lib, ... }:
 {
-  #copy from here 
+  #copy from here
   #virtual box settings
    virtualisation.virtualbox.host.enable = true;
    users.extraGroups.docker.members = [ "joaozinho" ];
@@ -13,6 +13,7 @@
 environment.variables = {
 GI_TYPELIB_PATH = "/run/current-system/sw/lib/girepository-1.0";
 };
+  programs.gnupg.agent.enable = true;
   users.users.joaozinho.extraGroups = [ "dialout" ];
   #tailscale	
   services.tailscale.enable = true;
@@ -50,7 +51,7 @@ GI_TYPELIB_PATH = "/run/current-system/sw/lib/girepository-1.0";
 	wget
 	wavm
 	curl
-    	alacritty
+	alacritty
 	neovim
 	git
 	cargo
@@ -74,10 +75,7 @@ GI_TYPELIB_PATH = "/run/current-system/sw/lib/girepository-1.0";
 	protonvpn-gui
 	gnupg
 	dig
-	moonlight-qt	
 	#for fun
-	ocs-url
-	alacritty-theme
 	neofetch
 	#nerd-fonts
 	vlc
