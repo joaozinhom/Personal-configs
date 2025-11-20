@@ -1,88 +1,81 @@
 { config, pkgs, lib, ... }:
 {
-  #copy from here
-  #virtual box settings
-   virtualisation.virtualbox.host.enable = true;
-   users.extraGroups.docker.members = [ "joaozinho" ];
-   virtualisation.virtualbox.host.enableExtensionPack = true;
-   virtualisation.virtualbox.host.enableKvm = true;
-   virtualisation.virtualbox.host.addNetworkInterface = false;
-   virtualisation.docker.rootless = {
-  	enable = true;
-  	setSocketVariable = true;};
-environment.variables = {
-GI_TYPELIB_PATH = "/run/current-system/sw/lib/girepository-1.0";
-};
-  programs.gnupg.agent.enable = true;
-  users.users.joaozinho.extraGroups = [ "dialout" ];
-  #tailscale	
-  services.tailscale.enable = true;
-  virtualisation.docker.enable = true;
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
-  programs.steam.enable = true;
-  services.libinput.enable = true;
-  # multi-touch gesture recognizer
-  services.touchegg.enable = true;
-  #flatpak enable
-  services.flatpak.enable = true;
-  # List packages installed in system profile. To search, run:
-  networking.firewall.checkReversePath = false;
-  # $ nix search wget
-  services.udev.packages = [pkgs.vial pkgs.via];
+  # User configuration
+  users.users.joaozinho.extraGroups = [ "dialout" "docker" ];
 
+  # Environment variables
+  environment.variables = {
+    GI_TYPELIB_PATH = "/run/current-system/sw/lib/girepository-1.0";
+  };
+  # Services
+  services = {
+    tailscale.enable = true;
+    libinput.enable = true;
+    touchegg.enable = true;
+    flatpak.enable = true;
+    udev.packages = [ pkgs.vial pkgs.via ];
+  };
+  # Programs
+  programs = {
+    gnupg.agent.enable = true;
+    steam.enable = true;
+  };
+  # Networking
+  networking.firewall.checkReversePath = false;
+  # Nixpkgs configuration
+  nixpkgs.config.allowUnfree = true;
+  # Flatpak packages
+  # Install these manually with:
+  # flatpak install flathub com.bambulab.BambuStudio
+  # flatpak install flathub com.discordapp.Discord
+  # flatpak install flathub com.spotify.Client
+  # flatpak install flathub org.kde.okular
+
+  # System packages organized by category
   environment.systemPackages = with pkgs; [
-  #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-  #  wget
-  #flatpak
-  	flatpak
-      	gnome-software
-  	#for code and work	
-	vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-	vial
-	libgtop
-	gparted
-	minikube
-	pkg-config
-	openssl
-	libxml2
-	libxslt
-	appimage-run
-	wget
-	wavm
-	curl
-	alacritty
-	neovim
-	git
-	cargo
-	vscode
-	zed-editor
-	chromium
-	vivaldi
-	obsidian
-	libgccjit
-	gccgo14
-	rustc
-	docker
-	wavm
-	unzip
-	tailscale
-	obs-studio
-	#for privacy
-	localsend
-	sparrow
-	bitcoin	
-	protonvpn-gui
-	gnupg
-	dig
-	#for fun
-	neofetch
-	#nerd-fonts
-	vlc
-	steam-run
-	steam
-  	ryujinx
-	#AI packages
-	lmstudio
+    vim
+    neovim
+    git
+    vscode
+    zed-editor
+    cargo
+    rustc
+    libgccjit
+    gccgo14
+    pkg-config
+    openssl
+    libxml2
+    libxslt
+    alacritty
+    wget
+    curl
+    unzip
+    neofetch
+    dig
+    docker
+    minikube
+    vial
+    libgtop
+    gparted
+    appimage-run
+    wavm
+    chromium
+    vivaldi
+    obsidian
+    localsend
+    sparrow
+    bitcoin
+    protonvpn-gui
+    gnupg
+    vlc
+    #obs-studio
+    steam
+    steam-run
+    ryujinx
+    #lmstudio
+    flatpak
+    gnome-software
+    adwaita-qt
+    qgnomeplatform
   ];
 }

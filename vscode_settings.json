@@ -1,0 +1,63 @@
+{
+    "Key Promoter.suggestKeybindingCreation": false,
+    "Key Promoter.ignoredCommands": [
+        "type",
+        "workbench.action.terminal.toggleTerminal",
+        "editor.action.clipboardCopyAction",
+        "workbench.action.Editor",
+        "workbench.action.closeActiveEditor",
+        "workbench.action.quickOpen",
+        "cursorWordEndRight",
+        "cursorWordLeft",
+        "scrollLineUp",
+        "workbench.action.chat.insertCodeBlock",
+        "cursorWordLeftSelect",
+        "cursorWordEndRightSelect",
+        "selectNextSuggestion",
+        "selectPrevSuggestion"
+    ],
+    "git.autofetch": true,
+    "[python]": {
+        "diffEditor.ignoreTrimWhitespace": false,
+        "editor.formatOnType": true,
+        "editor.wordBasedSuggestions": "off"
+    },
+    "files.associations": {
+        "*.py": "python"
+    },
+    "editor.inlineSuggest.suppressSuggestions": true,
+    "window.customTitleBarVisibility": "auto",
+    "workbench.layoutControl.enabled": false,
+    "window.commandCenter": false,
+    "ollama-autocoder.completion keys": "",
+    "editor.fontSize": 17,
+    "workbench.settings.applyToAllProfiles": [
+        "editor.fontSize",
+        "synthwave84.brightness",
+        "synthwave84.disableGlow"
+    ],
+    "explorer.confirmDragAndDrop": false,
+    "github.copilot.editor.enableAutoCompletions": true,
+    "workbench.preferredHighContrastColorTheme": "SynthWave '84",
+    "extensions.experimental.affinity": {
+        "asvetliakov.vscode-neovim": 1
+    },
+    "synthwave84.disableGlow": true,
+    "git.openRepositoryInParentFolders": "never",
+    "workbench.colorTheme": "SynthWave '84",
+    "breadcrumbs.enabled": false,
+    "mcpServers": {},
+    "github.copilot.enable": {
+        "*": false,
+        "plaintext": false,
+        "markdown": false,
+        "scminput": false,
+        "rust": false,
+        "python": false
+    },
+    "git.blame.statusBarItem.enabled": false,
+    "git.blame.editorDecoration.enabled": false,
+    "editor.renderWhitespace": "all",
+    "terminal.external.linuxExec": "alacritty",
+    "python.terminal.activateEnvironment": false
+}

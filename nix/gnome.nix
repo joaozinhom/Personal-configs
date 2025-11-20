@@ -1,10 +1,16 @@
 { config, pkgs, lib, ... }:
-{
+{ 
+  
   # Enable GNOME Desktop Environment
   services.xserver = {
     enable = true;
     displayManager.gdm.enable = true;
     desktopManager.gnome.enable = true;
+  };
+  qt = {
+  enable = true;
+  platformTheme = "gnome";
+  style = "adwaita-dark";
   };
   # Remove default GNOME applications
   environment.gnome.excludePackages = with pkgs; [
@@ -27,7 +33,7 @@
     gnome-nibbles
     gnome-robots
     gnome-sudoku
-    gnome-taquin
+    gnome-taquin 
     gnome-tetravex
     quadrapassel
     swell-foop
@@ -43,6 +49,10 @@
     #gnome-system-monitor
     seahorse # GNOME Passwords and Keys
     #gnome-disk-utility
+    adwaita-qt
+    adwaita-qt6
+    qgnomeplatform
+    qgnomeplatform-qt6
   ];
   # Install required packages for extensions and GNOME functionality
   environment.systemPackages = with pkgs; [
@@ -76,5 +86,4 @@
     gamemode.enable = true;
   };
 }
-
 
