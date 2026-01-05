@@ -20,6 +20,8 @@
     gnupg.agent.enable = true;
     steam.enable = true;
   };
+  services.fprintd.enable = true;
+
   # Networking
   networking.firewall.checkReversePath = false;
   # Nixpkgs configuration
@@ -34,10 +36,10 @@
   # System packages organized by category
   environment.systemPackages = with pkgs; [
     vim
+    fprintd
     neovim
     git
     vscode
-    zed-editor
     cargo
     rustc
     libgccjit
@@ -57,12 +59,10 @@
     vial
     libgtop
     gparted
-    appimage-run
-    wavm
+    appimage-run 
     chromium
     vivaldi
     obsidian
-    localsend
     sparrow
     bitcoin
     protonvpn-gui
@@ -71,11 +71,15 @@
     #obs-studio
     steam
     steam-run
-    ryujinx
-    #lmstudio
     flatpak
     gnome-software
     adwaita-qt
     qgnomeplatform
+    trezor-agent
+    trezor-suite
+    xclip
+    lazygit
+    freerdp
+    htop
   ];
 }
