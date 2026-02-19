@@ -33,6 +33,7 @@
           curl
           unzip
           neofetch
+	  obsidian
           dig
           docker
           minikube
@@ -56,7 +57,6 @@
           "protonvpn"
           "vlc"
 	  "localsend"
-	  "obsidian"
         ];
         masApps = {
           "Yoink" = 457622435;
@@ -72,16 +72,13 @@
         dock.largesize = 64;
         dock.persistent-apps = [
           "${pkgs.alacritty}/Applications/Alacritty.app"
-          "/Applications/Brave.app"
+          "/Applications/Zen.app"
           "${pkgs.obsidian}/Applications/Obsidian.app"
-          "/System/Applications/Mail.app"
-          "/System/Applications/Calendar.app"
         ];
         finder.FXPreferredViewStyle = "clmv";
         loginwindow.GuestEnabled  = false;
         NSGlobalDomain.AppleICUForce24HourTime = true;
         NSGlobalDomain.AppleInterfaceStyle = "Dark";
-        NSGlobalDomain.KeyRepeat = 2;
       };
 
       # Auto upgrade nix package and the daemon service.
@@ -93,7 +90,6 @@
 
       # Create /etc/zshrc that loads the nix-darwin environment.
       programs.zsh.enable = true;  # default shell on catalina
-      # programs.fish.enable = true;
 
       # Set Git commit hash for darwin-version.
       system.configurationRevision = self.rev or self.dirtyRev or null;
