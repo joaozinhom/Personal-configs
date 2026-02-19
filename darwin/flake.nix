@@ -50,7 +50,6 @@
           "mas"
         ];
         casks = [
-          "brave-browser"
           "zen"
           "visual-studio-code"
           "sparrow"
