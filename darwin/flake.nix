@@ -33,7 +33,7 @@
           curl
           unzip
           neofetch
-	  obsidian
+	        obsidian
           dig
           docker
           minikube
@@ -42,7 +42,7 @@
           trezor-agent
           lazygit
           htop
-	  uv
+	        uv
         ];
 
       homebrew = {
@@ -56,7 +56,7 @@
           "sparrow"
           "protonvpn"
           "vlc"
-	  "localsend"
+	        "localsend"
         ];
         masApps = {
           "Yoink" = 457622435;
@@ -72,7 +72,9 @@
         dock.largesize = 64;
         dock.persistent-apps = [
           "${pkgs.alacritty}/Applications/Alacritty.app"
-          "/Applications/Zen.app"
+          "/Applications/zen.app"
+          "/Applications/vlc.app"
+          "/Applications/visual-studio-code.app"
           "${pkgs.obsidian}/Applications/Obsidian.app"
         ];
         finder.FXPreferredViewStyle = "clmv";
@@ -112,7 +114,7 @@
         {
           nix-homebrew = {
             enable = true;
-            # Apple Silicon Only
+            # Apple Silicon Only, looks like this is for virtualization/run x86 things
             enableRosetta = true;
             # User owning the Homebrew prefix
             user = "joaozinho";
