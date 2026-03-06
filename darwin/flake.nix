@@ -57,6 +57,7 @@
           "protonvpn"
           "vlc"
 	        "localsend"
+          "utm"
         ];
         masApps = {
           "Yoink" = 457622435;
