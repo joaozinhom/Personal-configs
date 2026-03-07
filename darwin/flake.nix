@@ -1,4 +1,3 @@
-
 {
   description = "Joaozinho macOS flake";
 
@@ -15,8 +14,6 @@
 
       nixpkgs.config.allowUnfree = true;
 
-      # List packages installed in system profile. To search by name, run:
-      # $ nix-env -qaP | grep wget
       environment.systemPackages = with pkgs;
         [
           neovim
@@ -33,7 +30,7 @@
           curl
           unzip
           neofetch
-	        obsidian
+          obsidian
           dig
           docker
           minikube
@@ -42,7 +39,7 @@
           trezor-agent
           lazygit
           htop
-	        uv
+          uv
         ];
 
       homebrew = {
@@ -56,7 +53,7 @@
           "sparrow"
           "protonvpn"
           "vlc"
-	        "localsend"
+          "localsend"
           "utm"
         ];
         masApps = {
@@ -66,8 +63,9 @@
       };
 
       fonts.packages = [
-        (pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
+        pkgs.nerd-fonts.jetbrains-mono
       ];
+
       system.defaults = {
         dock.autohide  = true;
         dock.largesize = 64;
@@ -84,47 +82,36 @@
         NSGlobalDomain.AppleInterfaceStyle = "Dark";
       };
 
-      # Auto upgrade nix package and the daemon service.
       services.nix-daemon.enable = true;
-      # nix.package = pkgs.nix;
 
-      # Necessary for using flakes on this system.
       nix.settings.experimental-features = "nix-command flakes";
 
-      # Create /etc/zshrc that loads the nix-darwin environment.
-      programs.zsh.enable = true;  # default shell on catalina
+      programs.zsh.enable = true;
 
-      # Set Git commit hash for darwin-version.
       system.configurationRevision = self.rev or self.dirtyRev or null;
 
-      # Used for backwards compatibility, please read the changelog before changing.
-      # $ darwin-rebuild changelog
       system.stateVersion = 4;
 
-      # The platform the configuration will be used on.
       nixpkgs.hostPlatform = "aarch64-darwin";
     };
   in
   {
-    # Build darwin flake using:
-    # $ darwin-rebuild build --flake .#simple
-    darwinConfigurations."mini" = nix-darwin.lib.darwinSystem {
+    # Build with:
+    # $ darwin-rebuild build --flake .#joaozinho
+    darwinConfigurations."joaozinho" = nix-darwin.lib.darwinSystem {
       modules = [
         configuration
         nix-homebrew.darwinModules.nix-homebrew
         {
           nix-homebrew = {
             enable = true;
-            # Apple Silicon Only, looks like this is for virtualization/run x86 things
             enableRosetta = true;
-            # User owning the Homebrew prefix
             user = "joaozinho";
           };
         }
       ];
     };
 
-    # Expose the package set, including overlays, for convenience.
-    darwinPackages = self.darwinConfigurations."mini".pkgs;
+    darwinPackages = self.darwinConfigurations."joaozinho".pkgs;
   };
 }
