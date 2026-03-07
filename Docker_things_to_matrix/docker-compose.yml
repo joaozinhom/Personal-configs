@@ -1,0 +1,70 @@
+version: '3.8'
+
+services:
+  synapse:
+    image: matrixdotorg/synapse:latest
+    container_name: synapse
+    restart: unless-stopped
+    ports:
+      - "8008:8008"
+      - "8448:8448"
+    volumes:
+      - ./synapse-data:/data
+    environment:
+      - SYNAPSE_CONFIG_PATH=/data/homeserver.yaml
+    depends_on:
+      - db
+    networks:
+      - matrix
+
+  db:
+    image: postgres:15-alpine
+    container_name: synapse-db
+    restart: unless-stopped
+    environment:
+      - POSTGRES_USER=synapse
+      - POSTGRES_PASSWORD=changeme123        # ← change this!
+      - POSTGRES_DB=synapse
+      - POSTGRES_INITDB_ARGS=--encoding=UTF-8 --lc-collate=C --lc-ctype=C
+    volumes:
+      - ./postgres-data:/var/lib/postgresql/data
+    networks:
+      - matrix
+
+  cinny:
+    image: ajbura/cinny:latest
+    container_name: cinny
+    restart: unless-stopped
+    ports:
+      - "8080:80"
+    networks:
+      - matrix
+
+  nginx:
+    image: nginx:alpine
+    container_name: nginx
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/conf.d:/etc/nginx/conf.d
+      - ./nginx/certbot/conf:/etc/letsencrypt
+      - ./nginx/certbot/www:/var/www/certbot
+    depends_on:
+      - synapse
+      - cinny
+    networks:
+      - matrix
+
+  certbot:
+    image: certbot/certbot
+    container_name: certbot
+    volumes:
+      - ./nginx/certbot/conf:/etc/letsencrypt
+      - ./nginx/certbot/www:/var/www/certbot
+    # Run manually: docker compose run certbot certonly --webroot ...
+
+networks:
+  matrix:
+    driver: bridge
