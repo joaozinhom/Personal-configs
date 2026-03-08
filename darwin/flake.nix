@@ -55,6 +55,7 @@
           "vlc"
           "localsend"
           "utm"
+	  "stats" 
         ];
         masApps = {
           "Yoink" = 457622435;
