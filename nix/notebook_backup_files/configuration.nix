@@ -12,6 +12,7 @@
       ./gnome.nix
       ./virtualization.nix
       ./compression_mem.nix
+      ./game.nix
     ];
 
   #allow flakes

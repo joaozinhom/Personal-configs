@@ -27,7 +27,8 @@
   # flatpak install flathub com.discordapp.Discord
   # flatpak install flathub com.spotify.Client
   # flatpak install flathub org.kde.okular
-
+  virtualisation.docker.enable = true;
+  hardware.opengl.enable = true;
   # System packages organized by category
   environment.systemPackages = with pkgs; [
     vim
