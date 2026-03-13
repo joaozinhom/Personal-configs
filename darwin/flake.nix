@@ -55,7 +55,7 @@
           "vlc"
           "localsend"
           "utm"
-	  "stats" 
+          "stats"
         ];
         masApps = {
           "Yoink" = 457622435;
@@ -108,6 +108,7 @@
             enable = true;
             enableRosetta = true;
             user = "joaozinho";
+            autoMigrate = true;
           };
         }
       ];
