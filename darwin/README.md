@@ -12,7 +12,10 @@ Homebrew is managed entirely by `nix-homebrew` — no manual installation needed
 ```bash
 curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install
 ```
-
+or 
+```bash
+sh <(curl --proto '=https' --tlsv1.2 -L https://nixos.org/nix/install)
+```
 Restart your terminal after the installer finishes, or source the profile it tells you to.
 
 ---
