@@ -11,36 +11,55 @@
   outputs = inputs@{ self, nix-darwin, nixpkgs, nix-homebrew }:
   let
     configuration = { pkgs, config, ... }: {
-
       nixpkgs.config.allowUnfree = true;
+      nixpkgs.config.allowInsecure = true;
 
-      environment.systemPackages = with pkgs;
-        [
-          neovim
-          git
-          cargo
-          rustc
-          libgccjit
-          gccgo14
-          openssl
-          libxml2
-          libxslt
-          alacritty
-          wget
-          curl
-          unzip
-          neofetch
-          obsidian
-          dig
-          docker
-          minikube
-          bitcoin
-          gnupg
-          trezor-agent
-          lazygit
-          htop
-          uv
-        ];
+      system.primaryUser = "joaorosa";
+
+      environment.systemPackages = with pkgs; [
+        neovim
+        git
+        cargo
+        rustc
+        libgccjit
+        openssl
+        libxml2
+        libxslt
+        alacritty
+        wget
+        curl
+        unzip
+        fastfetch
+        obsidian
+        dig
+        docker
+        minikube
+        bitcoin
+        gnupg
+        lazygit
+        htop
+        uv
+        openssh
+        libfido2
+      ];
+
+      environment.variables = {
+        TREZOR_PASSPHRASE = "";
+        GIT_SSH = "/run/current-system/sw/bin/ssh";
+      };
+
+      system.activationScripts.sshConfig = {
+        text = ''
+          mkdir -p /Users/joaorosa/.ssh
+          cat > /Users/joaorosa/.ssh/config << 'EOF'
+Host github.com
+  User git
+  IdentityFile ~/.ssh/id_ecdsa_sk
+EOF
+          chown joaorosa /Users/joaorosa/.ssh/config
+          chmod 600 /Users/joaorosa/.ssh/config
+        '';
+      };
 
       homebrew = {
         enable = true;
@@ -57,16 +76,13 @@
           "utm"
           "stats"
         ];
-        masApps = {
-          "Yoink" = 457622435;
-        };
+        masApps = {};
         onActivation.cleanup = "zap";
       };
 
       fonts.packages = [
         pkgs.nerd-fonts.jetbrains-mono
         pkgs.open-dyslexic
-
       ];
 
       system.defaults = {
@@ -85,23 +101,15 @@
         NSGlobalDomain.AppleInterfaceStyle = "Dark";
       };
 
-      services.nix-daemon.enable = true;
-
-      nix.settings.experimental-features = "nix-command flakes";
-
+      nix.enable = false;
       programs.zsh.enable = true;
-
       system.configurationRevision = self.rev or self.dirtyRev or null;
-
       system.stateVersion = 4;
-
       nixpkgs.hostPlatform = "aarch64-darwin";
     };
   in
   {
-    # Build with:
-    # $ darwin-rebuild build --flake .#joaozinho
-    darwinConfigurations."joaozinho" = nix-darwin.lib.darwinSystem {
+    darwinConfigurations."joaorosa" = nix-darwin.lib.darwinSystem {
       modules = [
         configuration
         nix-homebrew.darwinModules.nix-homebrew
@@ -109,13 +117,12 @@
           nix-homebrew = {
             enable = true;
             enableRosetta = true;
-            user = "joaozinho";
+            user = "joaorosa";
             autoMigrate = true;
           };
         }
       ];
     };
-
-    darwinPackages = self.darwinConfigurations."joaozinho".pkgs;
+    darwinPackages = self.darwinConfigurations."joaorosa".pkgs;
   };
 }
