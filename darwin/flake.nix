@@ -1,19 +1,16 @@
 {
   description = "Joaozinho macOS flake";
-
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     nix-darwin.url = "github:LnL7/nix-darwin";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
     nix-homebrew.url = "github:zhaofengli-wip/nix-homebrew";
   };
-
   outputs = inputs@{ self, nix-darwin, nixpkgs, nix-homebrew }:
   let
     configuration = { pkgs, config, ... }: {
       nixpkgs.config.allowUnfree = true;
-      nixpkgs.config.allowInsecure = true;
-
+      nixpkgs.config.allowInsecurePredicate = pkg: true;
       system.primaryUser = "joaorosa";
 
       environment.systemPackages = with pkgs; [
@@ -36,6 +33,7 @@
         minikube
         bitcoin
         gnupg
+        pinentry_mac
         lazygit
         htop
         uv
@@ -46,6 +44,7 @@
       environment.variables = {
         TREZOR_PASSPHRASE = "";
         GIT_SSH = "/run/current-system/sw/bin/ssh";
+        GPG_TTY = "$(tty)";
       };
 
       system.activationScripts.sshConfig = {
@@ -61,10 +60,44 @@ EOF
         '';
       };
 
+      system.activationScripts.gpgConfig = {
+        text = ''
+          mkdir -p /Users/joaorosa/.gnupg
+          cat > /Users/joaorosa/.gnupg/gpg-agent.conf << 'EOF'
+default-cache-ttl 28800
+max-cache-ttl 86400
+pinentry-program /run/current-system/sw/bin/pinentry-mac
+enable-ssh-support
+EOF
+          chmod 700 /Users/joaorosa/.gnupg
+          chmod 600 /Users/joaorosa/.gnupg/gpg-agent.conf
+          chown -R joaorosa /Users/joaorosa/.gnupg
+        '';
+      };
+
+      launchd.user.agents.gpg-agent = {
+        serviceConfig = {
+          ProgramArguments = [
+            "/run/current-system/sw/bin/gpgconf"
+            "--launch"
+            "gpg-agent"
+          ];
+          RunAtLoad = true;
+          KeepAlive = true;
+          StandardOutPath = "/tmp/gpg-agent.log";
+          StandardErrorPath = "/tmp/gpg-agent.log";
+        };
+      };
+
       homebrew = {
         enable = true;
         brews = [
           "mas"
+          "trezor-agent"
+          "hidapi"
+          "libusb"
+          "libcbor"
+          "libsodium"
         ];
         casks = [
           "zen"
@@ -75,6 +108,7 @@ EOF
           "localsend"
           "utm"
           "stats"
+          "vial"
         ];
         masApps = {};
         onActivation.cleanup = "zap";
@@ -86,17 +120,18 @@ EOF
       ];
 
       system.defaults = {
-        dock.autohide  = true;
+        dock.autohide = true;
+        dock.magnification = true;
         dock.largesize = 64;
         dock.persistent-apps = [
           "${pkgs.alacritty}/Applications/Alacritty.app"
-          "/Applications/zen.app"
-          "/Applications/vlc.app"
-          "/Applications/visual-studio-code.app"
+          "/Applications/Zen Browser.app"
+          "/Applications/VLC.app"
+          "/Applications/Visual Studio Code.app"
           "${pkgs.obsidian}/Applications/Obsidian.app"
         ];
         finder.FXPreferredViewStyle = "clmv";
-        loginwindow.GuestEnabled  = false;
+        loginwindow.GuestEnabled = false;
         NSGlobalDomain.AppleICUForce24HourTime = true;
         NSGlobalDomain.AppleInterfaceStyle = "Dark";
       };
