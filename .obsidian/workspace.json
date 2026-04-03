@@ -1,0 +1,227 @@
+{
+  "main": {
+    "id": "ea879c82809b4182",
+    "type": "split",
+    "children": [
+      {
+        "id": "d63cb2468878054b",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "23b848ffd9faa17f",
+            "type": "leaf",
+            "state": {
+              "type": "pdf",
+              "state": {
+                "file": "books/The Joy of Cryptography (2021 Updated) -- Mike Rosulek -- 2021 -- School of Electrical Engineering & Computer Science Oregon -- da79fa21b263fe549aecaabd2a0a41c8 -- Anna’s Archive.pdf",
+                "page": 38,
+                "left": -8,
+                "top": 569,
+                "zoom": 1.8639705882352942
+              },
+              "icon": "lucide-file-text",
+              "title": "The Joy of Cryptography (2021 Updated) -- Mike Rosulek -- 2021 -- School of Electrical Engineering & Computer Science Oregon -- da79fa21b263fe549aecaabd2a0a41c8 -- Anna’s Archive"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "c5d36fda93704ed9",
+    "type": "split",
+    "children": [
+      {
+        "id": "4560b5307a96b7ad",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "f0320928f6993327",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
+            }
+          },
+          {
+            "id": "6fb98f383bbcd93c",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "8f2009a51c6749a7",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "91c66ccf02ea0d90",
+    "type": "split",
+    "children": [
+      {
+        "id": "827b10b072c4bc08",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "743ca89db27341de",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks"
+            }
+          },
+          {
+            "id": "7859cb35fdda21c0",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links"
+            }
+          },
+          {
+            "id": "039e30ba9d9d0761",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "740cebdfa8e03bc5",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "All properties"
+            }
+          },
+          {
+            "id": "589f8b50b695b2db",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "bases:Create new base": false,
+      "obsidian-excalidraw-plugin:New drawing": false,
+      "pdf-plus:PDF++: Toggle auto-copy": false,
+      "pdf-plus:PDF++: Toggle auto-focus": false,
+      "pdf-plus:PDF++: Toggle auto-paste": false
+    }
+  },
+  "active": "23b848ffd9faa17f",
+  "lastOpenFiles": [
+    "books/sicp(Structure and Interpretation of computer programs).pdf",
+    "books/The Joy of Cryptography (2021 Updated) -- Mike Rosulek -- 2021 -- School of Electrical Engineering & Computer Science Oregon -- da79fa21b263fe549aecaabd2a0a41c8 -- Anna’s Archive.pdf",
+    "workshops/Pins workshop.md",
+    "workshops/Jhonny workshop.md",
+    "workshops/git absorb.md",
+    "monologos/from ctsc40 to cheapino v2.md",
+    "monologos/Open sats grant no ecossistema da krux.md",
+    "monologos/BitNewbies (prescisamos de um nome melhor).md",
+    "monologos/Sobre minha experiência com o Macos air m4.md",
+    "Excalidraw/Drawing 2026-04-02 18.05.51.excalidraw.md",
+    "Excalidraw",
+    "brisando/Sobre minha experiência com o Macos air m4.md",
+    "brisando/sobre a piscina da escola 42.md",
+    "brisando/Open sats grant no ecossistema da krux.md",
+    "brisando/from ctsc40 to cheapino v2.md",
+    "brisando/BitNewbies (prescisamos de um nome melhor).md",
+    "brisando",
+    "apaneas brisando",
+    "Untitled",
+    "workshops",
+    "Excalidraw/Drawing 2026-04-02 15.48.56.excalidraw.md",
+    "books",
+    "Untitled.base",
+    "git absorb.md",
+    "from ctsc40 to cheapino v2.md",
+    "Jhonny workshop.md",
+    "Pins workshop.md",
+    "Summary.md",
+    "Sobre minha experiência com o Macos air m4.md",
+    "sobre a piscina da escola 42.md",
+    "Open sats grant no ecossistema da krux.md",
+    "BitNewbies (prescisamos de um nome melhor).md",
+    "Excalidraw/Drawing 2026-03-24 09.30.19.excalidraw.md",
+    "Excalidraw/Drawing 2026-03-24 09.30.11.excalidraw.md",
+    "Untitled.canvas"
+  ]
+}
