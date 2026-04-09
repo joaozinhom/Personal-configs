@@ -14,7 +14,7 @@
       system.primaryUser = "joaorosa";
 
       environment.systemPackages = with pkgs; [
-        neovim
+        helix
         git
         cargo
         rustc
@@ -26,6 +26,7 @@
         wget
         curl
         unzip
+        tree
         fastfetch
         obsidian
         dig
@@ -45,6 +46,7 @@
         TREZOR_PASSPHRASE = "";
         GIT_SSH = "/run/current-system/sw/bin/ssh";
         GPG_TTY = "$(tty)";
+        EDITOR = "hx";
       };
 
       system.activationScripts.sshConfig = {
@@ -98,9 +100,21 @@ EOF
           "libusb"
           "libcbor"
           "libsodium"
+          # image processing stack
+          "imagemagick"
+          "zbar"
+          # dev tools
+          "cmocka"
+          "cryptography"
+          "hwloc"
+          "libpcap"
+          "pipx"
+          "pyenv"
+          "python@3.14"
         ];
         casks = [
           "zen"
+          "zed"
           "visual-studio-code"
           "sparrow"
           "protonvpn"
@@ -109,6 +123,7 @@ EOF
           "utm"
           "stats"
           "vial"
+          "font-opendyslexic-nerd-font"
         ];
         masApps = {};
         onActivation.cleanup = "zap";
