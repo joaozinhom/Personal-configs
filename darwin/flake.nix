@@ -40,55 +40,13 @@
         uv
         openssh
         libfido2
+        yubikey-manager
       ];
 
       environment.variables = {
-        TREZOR_PASSPHRASE = "";
         GIT_SSH = "/run/current-system/sw/bin/ssh";
         GPG_TTY = "$(tty)";
         EDITOR = "hx";
-      };
-
-      system.activationScripts.sshConfig = {
-        text = ''
-          mkdir -p /Users/joaorosa/.ssh
-          cat > /Users/joaorosa/.ssh/config << 'EOF'
-Host github.com
-  User git
-  IdentityFile ~/.ssh/id_ecdsa_sk
-EOF
-          chown joaorosa /Users/joaorosa/.ssh/config
-          chmod 600 /Users/joaorosa/.ssh/config
-        '';
-      };
-
-      system.activationScripts.gpgConfig = {
-        text = ''
-          mkdir -p /Users/joaorosa/.gnupg
-          cat > /Users/joaorosa/.gnupg/gpg-agent.conf << 'EOF'
-default-cache-ttl 28800
-max-cache-ttl 86400
-pinentry-program /run/current-system/sw/bin/pinentry-mac
-enable-ssh-support
-EOF
-          chmod 700 /Users/joaorosa/.gnupg
-          chmod 600 /Users/joaorosa/.gnupg/gpg-agent.conf
-          chown -R joaorosa /Users/joaorosa/.gnupg
-        '';
-      };
-
-      launchd.user.agents.gpg-agent = {
-        serviceConfig = {
-          ProgramArguments = [
-            "/run/current-system/sw/bin/gpgconf"
-            "--launch"
-            "gpg-agent"
-          ];
-          RunAtLoad = true;
-          KeepAlive = true;
-          StandardOutPath = "/tmp/gpg-agent.log";
-          StandardErrorPath = "/tmp/gpg-agent.log";
-        };
       };
 
       homebrew = {
@@ -113,6 +71,7 @@ EOF
           "python@3.14"
         ];
         casks = [
+          "yubico-authenticator"
           "zen"
           "zed"
           "visual-studio-code"
@@ -138,13 +97,6 @@ EOF
         dock.autohide = true;
         dock.magnification = true;
         dock.largesize = 64;
-        dock.persistent-apps = [
-          "${pkgs.alacritty}/Applications/Alacritty.app"
-          "/Applications/Zen Browser.app"
-          "/Applications/VLC.app"
-          "/Applications/Visual Studio Code.app"
-          "${pkgs.obsidian}/Applications/Obsidian.app"
-        ];
         finder.FXPreferredViewStyle = "clmv";
         loginwindow.GuestEnabled = false;
         NSGlobalDomain.AppleICUForce24HourTime = true;
