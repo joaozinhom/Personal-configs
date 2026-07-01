@@ -30,7 +30,7 @@ opacity = 0.95
 padding.x = 10
 padding.y = 10
 dynamic_padding = true
-decorations = "Full"   # barra de título normal (botões + fullscreen funcionando)
+decorations = "Full"
 
 [window.dimensions]
 columns = 120
@@ -86,3 +86,9 @@ color = "#f97e72"
 [[colors.indexed_colors]]
 index = 17
 color = "#fe4450"
+
+[keyboard]
+bindings = [
+  { key = "L", mods = "Command", chars = "\u000c" },
+  { key = "L", mods = "Command", action = "ClearHistory" },
+]
