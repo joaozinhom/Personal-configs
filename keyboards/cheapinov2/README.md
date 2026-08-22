@@ -82,7 +82,7 @@ polegar L:  ___    ___    (held)  │   LCtrl  Enter  LGui
 central: M2 (Cmd+Shift+5)   encoder: Brightness + / −
 ```
 
-- **Linha de cima**: fileira numérica inteira, `1`–`5` na esquerda, `6`–`0` na direita (com shift dá `! @ # $ % ^ & * ( )`).
+- **Linha de cima**: fileira numérica inteira, `1`–`5` na esquerda, `6`–`0` na direita. Como uso **autoshift**, não preciso segurar Shift aqui: **segurar** o número já dá o símbolo com shift (`! @ # $ % ^ & * ( )`).
 - **Mão direita, home row**: setas em cruz horizontal `← ↓ ↑ →` — o cluster de navegação.
 - **Mão esquerda**: `Esc`, `Tab`, `LAlt` e `LShift` acessíveis sem sair da layer.
 - **Polegares direitos** viram modificadores puros: `LCtrl`, `Enter`, `LGui`.
@@ -211,6 +211,32 @@ Versão enxuta da Layer 3: **só o cluster de mouse** na mão direita. Sem RGB, 
 
 ---
 
+## Como eu uso no dia a dia
+
+Notas de fluxo — o que a tabela de teclas não conta, mas é o que faz o keymap valer a pena no uso real.
+
+### Autoshift nos números
+
+Autoshift está ligado, então nada de Shift dedicado pra pontuação da fileira numérica. Na **Layer 1** eu **seguro** o número e sai o símbolo (`1`→`!`, `2`→`@`, … `0`→`)`); toque curto dá o dígito. É o que deixa a nav layer limpa: uma fileira de números que também é `! @ # $ % ^ & * ( )` sem custar nenhuma tecla de modificador.
+
+### Acentos no macOS
+
+No Mac não me preocupo com dead keys nem com uma layer de acentos. Uso o **press-and-hold** do próprio sistema: seguro a letra (`a`, `e`, `o`, `c`, …), aparece o balão de variantes acentuadas e escolho pelo **número** correspondente (`á à â ã ä`, `ç`, etc.). Pra mim é super prático e não gasta nenhuma tecla do keymap. (Depende do `ApplePressAndHoldEnabled`, que é o padrão do macOS.)
+
+### Trocar de janela — Cmd+Tab
+
+Faço tudo no **Cmd+Tab** do macOS, sem app extra. No keymap isso mora na nav layer: seguro `MO(1)`, uso o `Tab` (home row esquerda) com o `Cmd` de polegar segurado pra ciclar as janelas — mantendo `Cmd` pressionado eu percorro o switcher normalmente.
+
+### Trocar de aba no browser
+
+Quando **não** estou no Vimium, pulo de aba direto pelo teclado com `Ctrl+Tab` / `Ctrl+Shift+Tab` — mais prático pra andar por várias abas em sequência do que usar o Vimium pra isso.
+
+### Vimium no browser
+
+No browser rodo **Vimium** pra minimizar o mouse: seguir links por letra, rolar, buscar e navegar tudo pelo teclado. Casa com a filosofia do keymap (mods nos polegares, mãos paradas na home row) — o cluster de mouse da Layer 3 vira exceção, não regra.
+
+---
+
 ## Tap dances
 
 Todos com **tapping term de 230 ms**.
@@ -290,7 +316,7 @@ Coisas que aparecem no `.vil` e provavelmente são resíduo de edições antigas
 
 1. **`MO(3)` no polegar L interno da Layer 6.** Estando no bloco Linux, isso te joga na layer de RGB/toggle **do macOS**. O combo `MO(5)`+`MO(6)` já cobre a layer adjust do Linux, então esta tecla parece sobra.
 2. **Um `C` solto na Layer 1**, posição do `C` (mão esquerda, linha de baixo, coluna 3). Não existe equivalente na Layer 5.
-3. **`M0` e `M1` definidos mas não atribuídos** a nenhuma tecla — `Ctrl+Tab` / `Ctrl+Shift+Tab` sobraram sem posição.
+3. **`M0` e `M1` definidos mas não atribuídos** a nenhuma tecla — `Ctrl+Tab` / `Ctrl+Shift+Tab` sobraram sem posição. Como o meu fluxo de "trocar de aba no browser" é justamente `Ctrl+Tab` / `Ctrl+Shift+Tab`, vale atribuir esses macros a uma tecla (ex.: na Layer 1) em vez de montar o atalho na mão.
 4. **Encoder morto nas layers 5–7** (`KC_NO`, não `KC_TRNS`), então girar não faz nada em vez de cair no volume da Layer 4.
 5. **Layer 7 sem espelho completo da Layer 3**: falta RGB e faltam os mods de polegar (`LGui`, `Space`, `Enter`, `Alt`) que a Layer 3 tem.
 6. A pasta `combo pictures ` tem **espaço no fim do nome** — vale renomear.
