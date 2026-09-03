@@ -41,6 +41,7 @@
         openssh
         libfido2
         yubikey-manager
+        claude-code
       ];
 
       environment.variables = {
@@ -69,23 +70,31 @@
           "pipx"
           "pyenv"
           "python@3.14"
+          #"sketchybar"
+          "lima"
+          "aria2"
+          "gh"
+          "colima"
         ];
         casks = [
           "yubico-authenticator"
-          "zen"
-          "zed"
+         # "zen"
           "visual-studio-code"
           "sparrow"
           "protonvpn"
-          "vlc"
+          #"vlc"
           "localsend"
           "utm"
           "stats"
           "vial"
           "font-opendyslexic-nerd-font"
+          "docker-desktop"
+          "orbstack"
+          "tor-browser"
+          "xquartz"
         ];
         masApps = {};
-        onActivation.cleanup = "zap";
+        onActivation.cleanup = "none";
       };
 
       fonts.packages = [
