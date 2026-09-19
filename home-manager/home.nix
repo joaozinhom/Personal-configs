@@ -1,97 +1,131 @@
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
+
+# Linux (Omarchy/Hyprland) home-manager config mirroring ../darwin/flake.nix.
+#
+# macOS-only tools NOT ported here, and how they're handled instead:
+#   - Docker Desktop / Colima / Lima / OrbStack
+#       -> Linux runs containers natively. Install the engine at the system
+#          level (`omarchy install docker`), not through home-manager, since
+#          it needs a root daemon + systemd unit. minikube: same story,
+#          install system-wide once docker/podman is up.
+#   - UTM
+#       -> nearest equivalent is virt-manager + qemu (GNOME Boxes also
+#          works). Not added here yet; system-level install if/when needed.
+#   - Stats (menu bar system monitor)
+#       -> covered by the Omarchy bar + btop/htop.
+#   - XQuartz
+#       -> not needed, Hyprland is native Wayland/X11.
+#   - mas (Mac App Store CLI)
+#       -> no equivalent needed on Linux.
+#   - pinentry_mac
+#       -> swapped for pinentry-curses below (works in-terminal under hx/tmux).
+#
+# Everything else from darwin/flake.nix's systemPackages + homebrew
+# brews/casks is ported 1:1 or to its closest Linux/nixpkgs equivalent below.
 
 {
-  # Home Manager needs a bit of information about you and the paths it should
-  # manage.
-  home.username = "joaozinho";
-  home.homeDirectory = "/home/joaozinho";
+  home.username = "joaozinhom";
+  home.homeDirectory = "/home/joaozinhom";
 
+  # See darwin/flake.nix's `system.stateVersion` for the mac side; this one
+  # tracks home-manager's own release. Set to 26.05 to match the generation
+  # already activated on this machine — do not lower it on later upgrades.
+  home.stateVersion = "26.05";
 
+  home.packages = with pkgs; [
+    # --- darwin systemPackages parity ---
+    helix
+    alacritty
+    git
+    cargo
+    rustc
+    libgccjit
+    openssl
+    libxml2
+    libxslt
+    wget
+    curl
+    unzip
+    tree
+    fastfetch
+    obsidian
+    dig
+    docker # CLI only here; the daemon/service is installed at the system level
+    bitcoin
+    gnupg
+    pinentry-curses # was pinentry_mac on darwin
+    lazygit
+    htop
+    uv
+    openssh
+    libfido2
+    yubikey-manager
+    claude-code
+    codex
 
-  # This value determines the Home Manager release that your configuration is
-  # compatible with. This helps avoid breakage when a new Home Manager release
-  # introduces backwards incompatible changes.
-  #
-  # You should not change this value, even if you update Home Manager. If you do
-  # want to update the value, then make sure to first check the Home Manager
-  # release notes.
-  home.stateVersion = "25.05"; # Please read the comment before changing.
+    # --- homebrew casks -> nixpkgs equivalents ---
+    vscode # was: visual-studio-code
+    sparrow # bitcoin wallet, same app cross-platform
+    protonvpn-gui # was: protonvpn
+    localsend
+    vial # QMK/VIA keyboard configurator
+    yubioath-flutter # was: yubico-authenticator
+    tor-browser
+    inputs.zen-browser.packages.${pkgs.system}.default # was commented out (# "zen") in darwin/flake.nix casks; already in use on this machine
 
-  # The home.packages option allows you to install Nix packages into your
-  # environment.
-  home.packages =[
-    # # Adds the 'hello' command to your environment. It prints a friendly
-    # # "Hello, world!" when run.
-    #pkgs.hello
-    pkgs.localsend
-    pkgs.tailscale
-    pkgs.libgtop
-    pkgs.pkg-config
-    pkgs.openssl
-    pkgs.libxml2
-    pkgs.libxslt
-    pkgs.curl
-    pkgs.neovim
-    pkgs.git
-    pkgs.cargo 
-    pkgs.libgccjit
-    pkgs.gccgo14
-    pkgs.rustc
-    pkgs.gnupg
-    pkgs.dig
+    # --- homebrew brews -> nixpkgs equivalents ---
+    trezor-agent
+    hidapi
+    libusb1
+    libcbor
+    libsodium
+    imagemagick
+    zbar
+    cmocka
+    hwloc
+    libpcap
+    pipx
+    pyenv
+    python313 # closest to darwin's python@3.14 currently packaged
+    aria2
+    gh
 
-    # # It is sometimes useful to fine-tune packages, for example, by applying
-    # # overrides. You can do that directly here, just don't forget the
-    # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
-    # # fonts?
-    # (pkgs.nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
+    # --- already-Linux-native extras kept from the previous home.nix ---
+    tailscale
+    libgtop
+    pkg-config
+    gccgo14
 
-    # # You can also create simple shell scripts directly inside your
-    # # configuration. For example, this adds a command 'my-hello' to your
-    # # environment:
-    # (pkgs.writeShellScriptBin "my-hello" ''
-    #   echo "Hello, ${config.home.username}!"
-    # '')
+    # --- fonts (was fonts.packages on darwin) ---
+    nerd-fonts.jetbrains-mono
+    nerd-fonts.open-dyslexic
   ];
 
-  # Home Manager is pretty good at managing dotfiles. The primary way to manage
-  # plain files is through 'home.file'.
-  home.file = {
-    # EDITOR = "emacs"
-    # # Building this configuration will create a copy of 'dotfiles/screenrc' in
-    # # the Nix store. Activating the configuration will then make '~/.screenrc' a
-    # # symlink to the Nix store copy.
-    # ".screenrc".source = dotfiles/screenrc;
+  fonts.fontconfig.enable = true;
 
-    # # You can also set the file content immediately.
-    # ".gradle/gradle.properties".text = ''
-    #   org.gradle.console=verbose
-    #   org.gradle.daemon.idletimeout=3600000
-    # '';
-  };
-
-  # Home Manager can also manage your environment variables through
-  # 'home.sessionVariables'. These will be explicitly sourced when using a
-  # shell provided by Home Manager. If you don't want to manage your shell
-  # through Home Manager then you have to manually source 'hm-session-vars.sh'
-  # located at either
-  #
-  #  ~/.nix-profile/etc/profile.d/hm-session-vars.sh
-  #
-  # or
-  #
-  #  ~/.local/state/nix/profiles/profile/etc/profile.d/hm-session-vars.sh
-  #
-  # or
-  #
-  #  /etc/profiles/per-user/joaozinho/etc/profile.d/hm-session-vars.sh
-  #
   home.sessionVariables = {
-    # EDITOR = "emacs";
+    EDITOR = "hx";
+    GPG_TTY = "$(tty)";
   };
 
-  # Let Home Manager install and manage itself.
-  programs.home-manager.enable = true;
-  
+  # Dotfiles are symlinked straight to the files tracked in this repo
+  # (Personal-configs/alacritty, Personal-configs/helix) so editing them
+  # in place and re-running `home-manager switch` is all that's needed —
+  # no copy drifts out of sync with git.
+  home.file = {
+    ".config/alacritty/alacritty.toml".source =
+      config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Personal-configs/alacritty/alacritty.toml";
 
+    ".config/helix/config.toml".source =
+      config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Personal-configs/helix/config.toml";
+
+    # NOTE: helix/tokyo-night.toml is written in Alacritty's theme format
+    # ([colors.primary]/[colors.normal]/...), not Helix's theme schema
+    # (ui.background/ui.cursor/...). It looks misplaced rather than an
+    # intentional Helix theme override, so it's left untouched in the repo
+    # and NOT symlinked into ~/.config/helix/themes/. config.toml already
+    # selects Helix's built-in "tokyonight" theme, which needs no extra file.
+  };
+
+  programs.home-manager.enable = true;
 }

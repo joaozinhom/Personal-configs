@@ -1,100 +1,28 @@
-# Alacritty Configuration
-# Self-contained — Synthwave '84 theme + clean styled terminal.
+general.import = [ "~/.local/state/omarchy/current/theme/alacritty.toml" ]
 
 [env]
 TERM = "xterm-256color"
 
-# ── Font ──────────────────────────────────────────────
+[terminal]
+osc52 = "CopyPaste"
+
 [font]
-size = 14.0
+normal = { family = "JetBrainsMono Nerd Font", style = "Regular" }
+bold = { family = "JetBrainsMono Nerd Font", style = "Bold" }
+italic = { family = "JetBrainsMono Nerd Font", style = "Italic" }
+size = 9
 
-[font.normal]
-family = "JetBrainsMono Nerd Font"
-style = "Regular"
-
-[font.bold]
-family = "JetBrainsMono Nerd Font"
-style = "Bold"
-
-[font.italic]
-family = "JetBrainsMono Nerd Font"
-style = "Italic"
-
-[font.bold_italic]
-family = "JetBrainsMono Nerd Font"
-style = "Bold Italic"
-
-# ── Window (clean style) ──────────────────────────────
 [window]
-opacity = 0.95
-padding.x = 10
-padding.y = 10
-dynamic_padding = true
-decorations = "Full" 
-[window.dimensions]
-columns = 120
-lines = 36
-
-# ── Cursor ────────────────────────────────────────────
-[cursor]
-style.shape = "Block"
-style.blinking = "On"
-blink_interval = 600
-
-# ── Scrolling ─────────────────────────────────────────
-[scrolling]
-history = 10000
-
-# ── Synthwave '84 colors ──────────────────────────────
-[colors.primary]
-background = "#262335"
-foreground = "#ffffff"
-
-[colors.cursor]
-text   = "#262335"
-cursor = "#ff7edb"
-
-[colors.selection]
-text       = "CellForeground"
-background = "#463465"
-
-[colors.normal]
-black   = "#241b30"
-red     = "#fe4450"
-green   = "#72f1b8"
-yellow  = "#fe905d"
-blue    = "#03edf9"
-magenta = "#ff7edb"
-cyan    = "#36f9f6"
-white   = "#f0eff1"
-
-[colors.bright]
-black   = "#495495"
-red     = "#fe4450"
-green   = "#72f1b8"
-yellow  = "#e3ba34"
-blue    = "#03edf9"
-magenta = "#ff7edb"
-cyan    = "#36f9f6"
-white   = "#ffffff"
-
-[[colors.indexed_colors]]
-index = 16
-color = "#f97e72"
-
-[[colors.indexed_colors]]
-index = 17
-color = "#fe4450"
+padding.x = 14
+padding.y = 14
+decorations = "None"
 
 [keyboard]
 bindings = [
-  { key = "L", mods = "Command", chars = "\u000c" },
-  { key = "L", mods = "Command", action = "ClearHistory" },
-  { key = "Tab", mods = "Control", action = "SelectNextTab" },
-  { key = "Tab", mods = "Control|Shift", action = "SelectPreviousTab" },
+{ key = "Insert", mods = "Shift", action = "Paste" },
+{ key = "Insert", mods = "Control", action = "Copy" },
+# Send Shift+Return as CSI-u so TUIs can distinguish it from Return without treating it as Alt+Return.
+{ key = "Return", mods = "Shift", chars = "[13;2u" },
+# Legacy encoding sends Alt+Shift+Return the same as Alt+Return; send CSI-u so tmux can match M-S-Enter.
+{ key = "Return", mods = "Alt|Shift", chars = "[13;4u" }
 ]
-
-#[keyboard.bindings]#
-#key = "Return"
-#mods = "Shift"
-#chars = "\u001B\r"
